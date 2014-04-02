@@ -8,7 +8,7 @@ function onRequest(request, response) {
 	console.log("Request for " + pathname + " received.");
 	var content = route(handle, pathname);
 	response.writeHead(200, {"Content-Type": "text/plain"});
-	response.write("Hello World, " + content);
+	response.write("Klaus sin server: " + content);
 	response.end();
 }
 http.createServer(onRequest).listen(8888);
