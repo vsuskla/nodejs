@@ -1,26 +1,18 @@
-var http=require("http");
-var url=require("url");
+var formidable=("formidable"),
+		http=require("http"),
+		url=require("url");
 
-function start(route, handle){
-	function onRequest(request, response) {
-		var postData = "";
-		var pathname = url.parse(request.url).pathname;
-		console.log("Request for " + pathname + " received.");
-		
-		request.setEncoding("utf8");
-		request.addListener("data", function(postDataChunk){
-			postData += postDataChunk;
-			console.log("Received POST data chunk '"+
-			postDataChunk + "'.");
+http.createServer(function(req, res){
+	if (req.url == "/upload" && req.method.toLowerCase() == "post") {
+		var form = new formidable.IncomingForm();
+		form.parse(req, function(error, fields, files)) {
+			res.writeHead(200, {"content-type":"text/plain"});
+			res.write("recived upload:\n\n");
+			res.end(sys.inspect({fields: fields, files: files}))
 		});
-		
-		request.addListener("end", function() {
-			route(handle, pathname, response,postData);
-		} );
+		return;
 	}
 	
-	http.createServer(onRequest).listen(8888);
-	console.log("Server has started.");
-}
+})
 
 exports.start=start;

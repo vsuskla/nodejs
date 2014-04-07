@@ -1,6 +1,6 @@
-var server=require("./server");
-var router=require("./router");
-var requestHandlers=require("./requestHandlers");
+var server=require("./serverPic");
+var router=require("./routerPic");
+var requestHandlers=require("./requestHandlersPic");
 
 var handle={}
 handle["/"]=requestHandlers.start;
