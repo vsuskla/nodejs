@@ -4,8 +4,8 @@ function start(response){
 console.log("Request handler 'start' was called.");
 var body = '<html>'+
 	'<head>'+
-	'<meta http-equiv="Content-Type" '+ 'content="text/html;
-	charset=UTF-8" />'+
+	'<meta http-equiv="Content-Type" '+
+	'content="text/html;charset=UTF-8" />'+
 	'</head>'+
 	'<body>'+
 	'<form action="/upload" enctype="multipart/form-data" '+
@@ -21,7 +21,7 @@ var body = '<html>'+
 	response.end();
 }
 
-functionupload(response,request){
+function upload(response,request){
 	console.log("Request handler 'upload' was called.");
 
 	var form = new formidable.IncomingForm();
@@ -43,7 +43,7 @@ functionupload(response,request){
 	});
 }
 
-functionshow(response){
+function show(response){
 	console.log("Request handler 'show' was called.");
 	response.writeHead(200, {"Content-Type": "image/png"});
 	fs.createReadStream("/tmp/test.png").pipe(response);
